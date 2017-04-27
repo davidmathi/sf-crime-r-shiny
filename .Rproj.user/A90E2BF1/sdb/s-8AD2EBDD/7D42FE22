@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\nlibrary(shiny)\nlibrary(ggplot2)\nlibrary(ggmap)\n\n\nsf_data<-read.csv(\"sfCrimeModified.csv\")\nshinyServer(function(input,output){\n  \n  \n  output$myHist<-renderPlot({\n  if(input$columnNames!=\"Category\"){\n    ggplot(sf_data[which(sf_data$Category==input$categoryType),],aes_string(x=input$columnNames) )+ geom_bar(colour=\"red\") +\n      theme(axis.text.x = element_text(angle = 45, hjust = 1))}\n  else\n  {\n    ggplot(sf_data,aes_string(x=input$columnNames) )+ geom_bar(colour=\"red\") +\n      theme(axis.text.x = element_text(angle = 45, hjust = 1))}\n    \n  })\n  \n  output$myMap1<-renderPlot({\n    \n    if(input$columnNames!=\"Category\"){\n      #plot the  hybrid Google Maps basemap\n      map <- qmap('San Francisco', zoom = 12, maptype = 'hybrid')\n      #plot the crime points on top\n      map + geom_point(data = sf_data[which(sf_data$Category==input$categoryType),], aes(x =X , y = Y), color=\"blue\", size=3, alpha=0.5)}\n    else\n    {\n      #plot the  hybrid Google Maps basemap\n      map <- qmap('San Francisco', zoom = 12, maptype = 'hybrid')\n      #plot the crime points on top\n      map + geom_point(data = sf_data, aes(x =X , y = Y), color=\"blue\", size=3, alpha=0.5)\n    \n  }\n      },width=15000,height=1500)\n  \n  \n  output$myMap2<-renderPlot({\n    \n    if(input$columnNames!=\"Category\"){\n      \n      #plot the roads Google Maps basemap\n      map <- qmap('San Francisco', zoom = 12, maptype = 'roadmap')\n      #plot the density map\n      map + stat_density2d(\n        aes(x = X, y = Y, fill = ..level.., alpha = ..level..*2), \n        size = 2, bins = 5, data = sf_data[which(sf_data$Category==input$categoryType),], geom = \"polygon\") +\n        scale_fill_gradient(low = \"black\", high = \"red\")\n    }\n    else\n    {\n      #plot the roads Google Maps basemap\n      map <- qmap('San Francisco', zoom = 12, maptype = 'roadmap')\n      #plot the density map\n      map + stat_density2d(\n        aes(x = X, y = Y, fill = ..level.., alpha = ..level..*2), \n        size = 2, bins = 5, data = sf_data, geom = \"polygon\") +\n        scale_fill_gradient(low = \"black\", high = \"red\")\n      \n    }\n  },width=1000,height=1000)\n    \n  \n  \n})\n",
+    "created" : 1493240834024.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3363577914",
+    "id" : "7D42FE22",
+    "lastKnownWriteTime" : 1493268616,
+    "last_content_update" : 1493268616736,
+    "path" : "~/sfCrime/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

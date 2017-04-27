@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\n\nshinyUI(fluidPage(\n  titlePanel(\"San Francisco Data Visualisation\"),\n  sidebarLayout(\n    sidebarPanel(\n      selectInput(\"columnNames\",\"select any\",c(\"Category\",\"DayOfWeek\",\"PdDistrict\",\"Year\",\"Month\",\"Day\",\"Hour\"),selected=\"DayOfWeek\",selectize=FALSE),\n      selectInput(\"categoryType\",\"select any\",c(\"ARSON\" ,\"ASSAULT\", 'BAD CHECKS', 'BRIBERY', 'BURGLARY',\n                                                'DISORDERLY CONDUCT' ,'DRIVING UNDER THE INFLUENCE', 'DRUG/NARCOTIC',\n                                                'DRUNKENNESS' ,'EMBEZZLEMENT' ,'EXTORTION' ,'FAMILY OFFENSES' ,\n                                                'FORGERY/COUNTERFEITING' ,'FRAUD' ,'GAMBLING' ,'KIDNAPPING',\n                                                'LARCENY/THEFT', 'LIQUOR LAWS', 'LOITERING' ,'MISSING PERSON',\n                                                'NON-CRIMINAL' ,'OTHER OFFENSES' ,'PORNOGRAPHY/OBSCENE MAT' ,\n                                                'PROSTITUTION', 'RECOVERED VEHICLE' ,'ROBBERY', 'RUNAWAY' ,\n                                                'SECONDARY CODES' ,'SEX OFFENSES FORCIBLE' ,'SEX OFFENSES NON FORCIBLE' ,\n                                                'STOLEN PROPERTY', 'SUICIDE' ,'SUSPICIOUS OCC' ,'TREA' ,\n                                                'TRESPASS' ,'VANDALISM', 'VEHICLE THEFT', 'WARRANTS' ,'WEAPON LAWS' ))\n      \n    ),\n    mainPanel(\n      plotOutput(\"myHist\"),\n      plotOutput(\"myMap1\"),\n      plotOutput(\"myMap2\")\n    )\n    \n  )\n  \n  \n))",
+    "created" : 1493240833611.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "962824217",
+    "id" : "A9234327",
+    "lastKnownWriteTime" : 1493267882,
+    "last_content_update" : 1493267882089,
+    "path" : "~/sfCrime/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
